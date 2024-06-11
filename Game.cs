@@ -8,18 +8,20 @@ public class Game
     public int NumberOfMovements;
     private List<(Piece piece, (int x, int y) position)> _pieces = new List<(Piece, (int x, int y))>();
     private List<(Piece piece, (int x, int y) position)> _originalState = new List<(Piece, (int x, int y))>();
-    private int _pieceId = 1;
+    private int _pieceId = 0;
     private const ConsoleColor DefaultColour = ConsoleColor.Black;
+
+    public int NumberOfPieces => _pieceId;
     public Game(Board board)
     {
         _board = board;
     }
     public void AddPiece(Piece piece, int x, int y)
     {
+        _pieceId++;
         piece.Id = _pieceId;
         _board.AddPiece(piece, x, y);
         _pieces.Add((piece, (x, y)));
-        _pieceId++;
     }
 
     public Piece GetPieceById(int pieceId)

@@ -37,6 +37,9 @@ while (true)
         case (ConsoleKey.RightArrow):
             game.MovePiece(selectedPiece, Direction.Right);
             break;
+        case ConsoleKey.Tab:
+            selectedPiece = selectedPiece == game.NumberOfPieces ? 1 : selectedPiece+1;
+            break;
         case ConsoleKey.R:
             game.Reset();
             selectedPiece = 1;
