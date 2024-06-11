@@ -15,9 +15,8 @@ game.AddPiece(new L(4), 2, 4);
 game.SaveState();
 
 game.Print();
-var selectedPiece = 1;
 var numberOfMovements = 0;
-Console.WriteLine($"Selected piece {selectedPiece}");
+Console.WriteLine($"Selected piece {game.SelectedPiece}");
 Console.WriteLine($"Number of movements {numberOfMovements}");
 while (true)
 {
@@ -26,29 +25,29 @@ while (true)
     switch (key.Key)
     {
         case (ConsoleKey.UpArrow):
-            game.MovePiece(selectedPiece, Direction.Up);
+            game.MovePiece(Direction.Up);
             break;
         case (ConsoleKey.DownArrow):
-            game.MovePiece(selectedPiece, Direction.Down);
+            game.MovePiece(Direction.Down);
             break;
         case (ConsoleKey.LeftArrow):
-            game.MovePiece(selectedPiece, Direction.Left);
+            game.MovePiece(Direction.Left);
             break;
         case (ConsoleKey.RightArrow):
-            game.MovePiece(selectedPiece, Direction.Right);
+            game.MovePiece(Direction.Right);
             break;
         case ConsoleKey.Tab:
-            selectedPiece = selectedPiece == game.NumberOfPieces ? 1 : selectedPiece+1;
+            game.SelectedPiece = game.SelectedPiece == game.NumberOfPieces ? 1 : game.SelectedPiece+1;
             break;
         case ConsoleKey.R:
             game.Reset();
-            selectedPiece = 1;
+            game.SelectedPiece = 1;
             break;
         default:
-            selectedPiece = Int32.TryParse(key.KeyChar.ToString(), out var number) ? number : selectedPiece;
+            game.SelectedPiece = Int32.TryParse(key.KeyChar.ToString(), out var number) ? number : game.SelectedPiece;
             break;
     }
     game.Print();
-    Console.WriteLine($"Selected piece {selectedPiece}");
+    Console.WriteLine($"Selected piece {game.SelectedPiece}");
     Console.WriteLine($"Number of movements {game.NumberOfMovements}");
 }
